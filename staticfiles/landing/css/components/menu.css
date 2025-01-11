@@ -1,0 +1,136 @@
+/* General Menu Styling */
+.menu {
+    background-color: #f5f5f5; /* Light gray background */
+    color: rgb(4, 0, 10);
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space left and right sections */
+    align-items: center; /* Vertically align items */
+    padding: 2rem 3rem; /* Add spacing around the menu */
+    font-family: "Roboto", sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+}
+
+/* Menu List */
+.menu-list {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+}
+
+/* Left Section */
+.left {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Add spacing between logo and search bar */
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-right: 50px;
+}
+
+.searching {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; /* White background for the search bar */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 20px; /* Rounded edges */
+    padding: 1rem 1rem;
+    font-size: 1.1rem;
+     /* Inner padding */
+}
+
+.search {
+    border: none; /* Remove default border */
+    outline: none; /* Remove focus outline */
+    width: 300px; /* Set a consistent width */
+    font-size: 1.1rem;
+    font-family: inherit;
+    padding-left: 10px;
+}
+
+.search-button {
+    background-color: black; /* Black button */
+    color: white;
+    border: none;
+    border-radius: 20px; /* Match search bar edges */
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black; /* Add border on hover */
+}
+
+/* Right Section */
+.right {
+    display: flex;
+    align-items: center;
+    gap: 2rem; /* Space between navigation items */
+}
+
+.items {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.items:not(.login):hover {
+    
+    color: rgb(128, 128, 128);
+}
+
+.login{
+    background-color: rgb(4, 0, 10);
+    color: white;
+    padding: 1.2rem 2rem;
+    border-radius: 50px;
+    
+}
+
+.login:hover{
+    background-color: rgb(59, 56, 66);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .menu-list {
+        flex-direction: column; /* Stack sections */
+    }
+
+    .left,
+    .right {
+        justify-content: center;
+    }
+
+    .search {
+        width: 100%; /* Expand search bar */
+    }
+}
