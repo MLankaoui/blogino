@@ -1,0 +1,84 @@
+/* General Menu Styling */
+.menu {
+    background-color: #3f3838 !important; /* Ensures a consistent dark background */
+    color: white;
+    display: flex; /* Makes it a flex container */
+    justify-content: space-between; /* Spreads out left and right content */
+    align-items: center; /* Vertically aligns items */
+    padding: 1rem 2rem; /* Adds padding for better spacing */
+    font-family: "Roboto", serif;
+}
+
+/* Left Section - Logo */
+.left .logo {
+    font-size: 2rem;
+    font-weight: 900;
+    color: white; /* Ensures logo text stays visible */
+    text-decoration: none; /* Removes underline for links */
+}
+
+/* Right Section */
+.right {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem; /* Adjusted gap for better spacing */
+    font-weight: 900;
+    align-items: center; /* Aligns elements vertically */
+}
+
+/* List Items */
+li {
+    list-style: none; /* Removes bullet points */
+}
+
+/* Search Bar */
+.right .search {
+    background-color: #ffffff;
+    display: flex; /* Ensures search elements are aligned horizontally */
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden; /* Ensures children don’t overflow rounded edges */
+}
+
+.right .searching {
+    padding: 0.5rem 1rem; /* Better padding for usability */
+    border: none; /* Removes input borders */
+    outline: none; /* Removes default focus outline */
+    font-size: 1rem;
+}
+
+.right .search-button {
+    background-color: #3f3838; /* Matches the menu background */
+    border: none;
+    color: white;
+    font-weight: bolder;
+    cursor: pointer;
+    padding: 0.5rem 1rem; /* Ensures consistent spacing */
+    transition: all 0.3s ease-in-out; /* Shortened and smoothed the transition */
+}
+
+.right .search-button:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column; /* Stacks elements for smaller screens */
+        padding: 1rem;
+    }
+
+    .right {
+        gap: 1rem; /* Reduces gap for smaller screens */
+        flex-wrap: wrap; /* Allows items to wrap if necessary */
+    }
+
+    .right .search {
+        width: 100%; /* Makes search bar span full width */
+    }
+
+    .right .searching {
+        flex: 1; /* Allows input to grow */
+    }
+}

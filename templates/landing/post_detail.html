@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'landing/css/components/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/css/components/posts.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Parkinsans:wght@300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Blogino</title>
+    <style>
+        .post-detail {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    {% block menu %}
+        {% include 'landing/components/menu.html' %}
+    {% endblock %}
+
+    {% block category %}
+        {% include 'landing/components/sidebar.html' %}
+    {% endblock %}
+
+    {% block post_detail %}
+        <div class="post-detail">
+            <h1 class="post-detail__title">{{ post.title }}</h1>
+            <p class="post-detail__author">{{ post.author }}</p>
+            <p class="post-detail__category">{{ post.category }}</p>
+            <p class="post-detail__content">{{ post.content }}</p>
+            {% if post.likes == 1 %}
+                <p class="post-detail__likes">{{ post.likes }} like</p>
+            {% else %}
+                <p class="post-detail__likes">{{ post.likes }} likes</p>
+            {% endif %}
+        </div>
+    {% endblock %}
+</body>
+</html>

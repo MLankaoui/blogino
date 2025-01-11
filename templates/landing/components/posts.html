@@ -1,0 +1,21 @@
+{% block posts %}
+    <div class="posts">
+        <h1 class="posts__title">Latest Posts</h1>
+        <div class="posts__container">
+            {% for post in posts %}
+                <div class="post">
+                    <h1 class="post__title">title: {{ post.title }}</h1>
+                    <p class="post__content">content: {{ post.content|truncatewords:10 }}...</p>
+                    <p class="post__author">author: {{ post.author }}</p>
+                    <p class="post__category">category: {{ post.category }}</p>
+                    {% if post.likes == 1 %}
+                        <p class="post__category">post liked 1 time</p>
+                    {% else %}
+                        <p class="post__category">post liked {{ post.likes }} times</p>
+                    {% endif %}
+                    <button class="post__button"><a href="{% url 'landing:post_detail' post.id %}"> Read More </a></button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}    

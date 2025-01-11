@@ -1,0 +1,8 @@
+{% block sidebar %}
+    <div class="sidebar">
+        <h1 class="sidebar__title">Categories</h1>
+        {% for category in categories %}
+            <p>{{ category.name }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}
