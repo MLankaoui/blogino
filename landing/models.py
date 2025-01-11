@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from ckeditor.fields import RichTextField
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -12,7 +12,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
+    content = RichTextField(blank=True, null=True)
     likes = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
