@@ -34,13 +34,21 @@
             <h1 class="post-detail__title">{{ post.title }}</h1>
             <p class="post-detail__author">{{ post.author }}</p>
             <p class="post-detail__category">{{ post.category }}</p>
-            <p class="post-detail__content">{{ post.content }}</p>
+            <p class="post-detail__content">{{ post.content|safe }}</p>
             {% if post.likes == 1 %}
-                <p class="post-detail__likes">{{ post.likes }} like</p>
+                <p class="post-detail__likes">{{ post.likes }} ❤️</p>
             {% else %}
-                <p class="post-detail__likes">{{ post.likes }} likes</p>
+                <p class="post-detail__likes">{{ post.likes }} ❤️</p>
             {% endif %}
         </div>
+
+        <h1>Comments: </h1>
+        <div class="comments">
+            {% for comment in comments %}
+                <div class="comment">
+                    <p class="comment__content">{{ comment.user }} : {{ comment.content }} : {{ comment.created_at }}</p>
+                </div>
+            {% endfor %}
     {% endblock %}
 </body>
 </html>

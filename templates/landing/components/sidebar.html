@@ -2,7 +2,7 @@
     <div class="sidebar">
         <h1 class="sidebar__title">Categories</h1>
         {% for category in categories %}
-            <p>{{ category.name }}</p>
+            <p> <a href="{% url 'landing:category' category.id %}"> {{ category.name }} </a></p>
         {% endfor %}
     </div>
 {% endblock %}
