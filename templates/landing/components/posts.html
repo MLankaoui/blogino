@@ -6,7 +6,7 @@
                 <div class="post">
                     <h1 class="post__title">title: {{ post.title }}</h1>
                     <p class="post__content">content: {{ post.content|truncatewords:10|safe }}...</p>
-                    <p class="post__author">author: {{ post.author }}</p>
+                    <p class="post__author">author: {{ post.user }}</p>
                     <p class="post__category">category: {{ post.category }}</p>
                     {% if post.likes == 1 %}
                         <p class="post__category">post liked 1 time</p>

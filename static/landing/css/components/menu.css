@@ -114,6 +114,11 @@
     background-color: rgb(59, 56, 66);
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 /* Responsiveness */
 @media (max-width: 768px) {
     .menu {
