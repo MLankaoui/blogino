@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Category, Post, Comment
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 # Create your views here.
 def index(request):
@@ -107,3 +108,13 @@ def delete_post(request, post_id):
     post.delete()
 
     return redirect('landing:dashboard')
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('landing:index')
+
+
+def signup_view(request):
+    return redirect('landing:index')
