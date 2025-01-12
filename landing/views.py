@@ -69,11 +69,13 @@ def dashboard(request):
     categories = Category.objects.all()
     user = request.user
     posts = Post.objects.filter(user=request.user)
+    all_posts = Post.objects.all()
 
     context = {
         'categories': categories,
         'posts': posts,
         'user': user,
+        'all_posts': all_posts,
     }
     return render(request, 'landing/dashboard.html', context)
 
@@ -107,7 +109,7 @@ def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     post.delete()
 
-    return redirect('landing:dashboard')
+    return redirect('landing:index')
 
 
 @login_required
@@ -118,3 +120,35 @@ def logout_view(request):
 
 def signup_view(request):
     return redirect('landing:index')
+
+
+@login_required
+def create_category(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+
+        category = Category(name=name)
+        category.save()
+
+    return redirect('landing:dashboard')
+
+
+
+@login_required
+def delete_category(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    category.delete()
+
+    return redirect('landing:dashboard')
+
+
+
+@login_required
+def edit_category(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+
+    if request.method == 'POST':
+        category.name = request.POST['name']
+        category.save()
+
+    return redirect('landing:dashboard')
