@@ -2,6 +2,15 @@
 
 Blogino is a Django-based blog application.
 
+## Features
+
+- User authentication and authorization
+- Create, edit, and delete blog posts
+- Categorize posts
+- Comment on posts
+- Admin dashboard for managing content
+- Responsive design
+
 ## Requirements
 
 Make sure you have the following installed:
@@ -77,3 +86,5 @@ python manage.py collectstatic
 ## License
 
 This project is licensed under the MIT License.
+
+

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import Category, Post, Comment
 from django.contrib.auth.decorators import login_required
 
@@ -54,8 +54,10 @@ def create_post(request):
         content = request.POST['content']
         category_id = request.POST['category']
         category = Category.objects.get(id=category_id)
+        create_at = request.POST['created_at']
+        updated_at = request.POST['updated_at']
 
-        post = Post(title=title, user=user, content=content, category=category)
+        post = Post(title=title, user=user, content=content, category=category, create_at=create_at, updated_at=updated_at)
         post.save()
 
         context['success'] = 'Post created successfully!'
@@ -98,3 +100,12 @@ def edit_post(request, post_id):
         context['success'] = 'Post updated successfully!'
 
     return render(request, 'landing/edit_post.html', context)
+
+
+
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    post.delete()
+
+    return redirect('landing:dashboard')

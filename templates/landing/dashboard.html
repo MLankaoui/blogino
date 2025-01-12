@@ -36,6 +36,7 @@
                         <li>
                             <a href="{% url 'landing:post_detail' post.id %}">{{ post.title }} </a>
                             <button><a href="{% url 'landing:edit_post' post.id %}">Edit</a></button>
+                            <button><a href="{% url 'landing:delete_post' post.id %}">Delete</a></button>
                         </li>
                     {% endfor %}
                 </ul>
