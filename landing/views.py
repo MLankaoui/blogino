@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Post, Comment
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -39,6 +40,7 @@ def category(request, category_id):
     return render(request, 'landing/category.html', context)
 
 
+@login_required
 def create_post(request):
     categories = Category.objects.all()
 
@@ -59,3 +61,40 @@ def create_post(request):
         context['success'] = 'Post created successfully!'
     
     return render(request, 'landing/create_post.html', context)
+
+
+@login_required
+def dashboard(request):
+    categories = Category.objects.all()
+    user = request.user
+    posts = Post.objects.filter(user=request.user)
+
+    context = {
+        'categories': categories,
+        'posts': posts,
+        'user': user,
+    }
+    return render(request, 'landing/dashboard.html', context)
+
+
+@login_required
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    categories = Category.objects.all()
+
+    context = {
+        'post': post,
+        'categories': categories,
+    }
+
+    if request.method == 'POST':
+        post.title = request.POST['title']
+        post.content = request.POST['content']
+        category_id = request.POST['category']
+        post.category = Category.objects.get(id=category_id)
+
+        post.save()
+
+        context['success'] = 'Post updated successfully!'
+
+    return render(request, 'landing/edit_post.html', context)
