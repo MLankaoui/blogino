@@ -34,10 +34,13 @@
                 <ul>
                     {% for post in posts %}
                         <li>
-                            <a href="{% url 'landing:post_detail' post.id %}">{{ post.title }}</a>
+                            <a href="{% url 'landing:post_detail' post.id %}">{{ post.title }} </a>
+                            <button><a href="{% url 'landing:edit_post' post.id %}">Edit</a></button>
                         </li>
                     {% endfor %}
                 </ul>
+
+                <button><a href="{% url 'landing:create_post' %}">Create a new post</a></button>
             </div>
             <div class="categories">
                 <h2>Categories</h2>
