@@ -37,3 +37,25 @@ def category(request, category_id):
         'posts': posts,
     }
     return render(request, 'landing/category.html', context)
+
+
+def create_post(request):
+    categories = Category.objects.all()
+
+    context = {
+        'categories': categories,
+    }
+
+    if request.method == 'POST':
+        title = request.POST['title']
+        user = request.user
+        content = request.POST['content']
+        category_id = request.POST['category']
+        category = Category.objects.get(id=category_id)
+
+        post = Post(title=title, user=user, content=content, category=category)
+        post.save()
+
+        context['success'] = 'Post created successfully!'
+    
+    return render(request, 'landing/create_post.html', context)
