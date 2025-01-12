@@ -54,10 +54,8 @@ def create_post(request):
         content = request.POST['content']
         category_id = request.POST['category']
         category = Category.objects.get(id=category_id)
-        create_at = request.POST['created_at']
-        updated_at = request.POST['updated_at']
 
-        post = Post(title=title, user=user, content=content, category=category, create_at=create_at, updated_at=updated_at)
+        post = Post(title=title, user=user, content=content, category=category)
         post.save()
 
         context['success'] = 'Post created successfully!'

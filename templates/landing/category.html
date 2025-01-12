@@ -21,16 +21,7 @@
     {% endblock %}
 
     {% block category %}
-        <div class="sidebar">
-            <h2 class="sidebar__title">Categories</h2>
-            <ul class="sidebar__list">
-                {% for cat in categories %}
-                    <li class="sidebar__item">
-                        <a href="{% url 'landing:category' cat.id %}" class="sidebar__link">{% if cat.id == category.id %}<strong>{{ cat.name }}</strong>{% else %}{{ cat.name }}{% endif %}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+        {% include 'landing/components/sidebar.html' %}
     {% endblock %}
     
     {% block posts %}
@@ -42,7 +33,7 @@
                         <div class="post">
                             <h1 class="post__title">{{ post.title }}</h1>
                             <p class="post__content">{{ post.content|truncatewords:10|safe }}...</p>
-                            <p class="post__author">Author: {{ post.author }}</p>
+                            <p class="post__author">Author: {{ post.user }}</p>
                             <p class="post__category">Category: {{ post.category }}</p>
                             {% if post.likes == 1 %}
                                 <p class="post__likes">Post liked 1 time</p>
