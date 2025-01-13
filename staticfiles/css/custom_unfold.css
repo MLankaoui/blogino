@@ -1,0 +1,12 @@
+/* Change primary colors in the admin */
+.bg-primary {
+    background-color: #1a73e8 !important; /* Your custom primary color */
+}
+
+.text-primary {
+    color: #1a73e8 !important;
+}
+
+.hover\:bg-primary:hover {
+    background-color: #1459b7 !important; /* Adjust hover color */
+}

@@ -4,16 +4,30 @@
         <div class="posts__container">
             {% for post in posts %}
                 <div class="post">
-                    <h1 class="post__title">title: {{ post.title }}</h1>
-                    <p class="post__content">content: {{ post.content|truncatewords:10|safe }}...</p>
-                    <p class="post__author">author: {{ post.author }}</p>
-                    <p class="post__category">category: {{ post.category }}</p>
-                    {% if post.likes == 1 %}
-                        <p class="post__category">post liked 1 time</p>
+                    {% if user.is_superuser  %}
+                        <h1 class="post__title">title: {{ post.title }}</h1>
+                        <p class="post__content">content: {{ post.content|truncatewords:10|safe }}...</p>
+                        <p class="post__author">author: {{ post.user }}</p>
+                        <p class="post__category">category: {{ post.category }}</p>
+                        {% if post.likes == 1 %}
+                            <p class="post__category">post liked 1 time</p>
+                        {% else %}
+                            <p class="post__category">post liked {{ post.likes }} times</p>
+                        {% endif %}
+                        <button class="post__button"><a href="{% url 'landing:post_detail' post.id %}"> Read More </a></button>
+                        <button><a href="{% url 'landing:delete_post' post.id %}">delete</a></button>
                     {% else %}
-                        <p class="post__category">post liked {{ post.likes }} times</p>
+                        <h1 class="post__title">{{ post.title }}</h1>
+                        <p class="post__content">{{ post.content|truncatewords:10|safe }}...</p>
+                        <p class="post__author">Author: {{ post.user }}</p>
+                        <p class="post__category">Category: {{ post.category }}</p>
+                        {% if post.likes == 1 %}
+                            <p class="post__likes">Post liked 1 time</p>
+                        {% else %}
+                            <p class="post__likes">Post liked {{ post.likes }} times</p>
+                        {% endif %}
+                        <button class="post__button"><a href="{% url 'landing:post_detail' post.id %}">Read More</a></button>
                     {% endif %}
-                    <button class="post__button"><a href="{% url 'landing:post_detail' post.id %}"> Read More </a></button>
                 </div>
             {% endfor %}
         </div>

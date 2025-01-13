@@ -16,7 +16,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin-top: 50px;
+            margin-top: 200px;
+            width: 50%;
         }
     </style>
 </head>
@@ -32,7 +33,7 @@
     {% block post_detail %}
         <div class="post-detail">
             <h1 class="post-detail__title">{{ post.title }}</h1>
-            <p class="post-detail__author">{{ post.author }}</p>
+            <p class="post-detail__author">posted by : {{ post.user }}</p>
             <p class="post-detail__category">{{ post.category }}</p>
             <p class="post-detail__content">{{ post.content|safe }}</p>
             {% if post.likes == 1 %}

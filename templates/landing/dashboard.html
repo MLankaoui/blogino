@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'landing/css/components/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/css/components/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/css/components/posts.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Parkinsans:wght@300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Blogino</title>
+    <style>
+    
+    </style>
+</head>
+<body>
+    {% block menu %}
+        {% include 'landing/components/menu.html' %}
+    {% endblock %}
+
+    {% block category %}
+        {% include 'landing/components/sidebar.html' %}
+    {% endblock %}
+
+    {% block dashboard %}
+        <div class="dashboard">
+            <h1>Dashboard</h1>
+            <div class="posts">
+                {% if user.is_superuser %}
+                    <h2>Welcome {{user}}, you re an admin right?</h2>
+                {% else %}
+                    <h2>Welcome {{user}}, you re a user right?</h2>
+                {% endif %}
+                <h2>{{user}}'s posts</h2>
+                <ul>
+                    {% for post in posts %}
+                        <li>
+                            <a href="{% url 'landing:post_detail' post.id %}">{{ post.title }} </a>
+                            <button><a href="{% url 'landing:edit_post' post.id %}">Edit</a></button>
+                            <button><a href="{% url 'landing:delete_post' post.id %}">Delete</a></button>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                
+
+                <button><a href="{% url 'landing:create_post' %}">Create a new post</a></button>
+            </div>
+
+            {% if user.is_superuser %}
+                <h2>all posts</h2>
+                <ul>
+                    {% for post in all_posts %}
+                        <li>
+                            <a href="{% url 'landing:post_detail' post.id %}">{{ post.title }} </a>
+                            <button><a href="{% url 'landing:edit_post' post.id %}">Edit</a></button>
+                            <button><a href="{% url 'landing:delete_post' post.id %}">Delete</a></button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+
+            
+            <div class="categories">
+                <h2>Categories</h2>
+                <ul>
+                    {% for category in categories %}
+                        <li>
+                            <a href="{% url 'landing:category' category.id %}">{{ category.name }}</a>
+                            <button><a href="{% url 'landing:delete_category' category.id %}">Delete</a></button>
+                            <form action="{% url 'landing:edit_category' category.id %}" method="POST">
+                                {% csrf_token %}
+                                <input type="text" name="name" placeholder="Category name">
+                                <button type="submit">Edit category</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <form action="{% url 'landing:create_category' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Category name">
+                    <button type="submit">Create category</button>
+                </form>
+            </div>
+        </div>
+    {% endblock %}
+</body>
+</html>
