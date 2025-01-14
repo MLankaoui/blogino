@@ -3,5 +3,7 @@ Django==5.1.4
 django-allauth==65.3.1
 django-ckeditor==6.7.2
 django-js-asset==3.0.1
+django-unfold==0.44.0
+pillow==11.1.0
 sqlparse==0.5.3
 tzdata==2024.2
