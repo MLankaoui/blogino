@@ -85,6 +85,8 @@
     gap: 2rem; /* Space between navigation items */
 }
 
+
+
 .items {
     font-size: 1.2rem;
     font-weight: 500;
@@ -97,7 +99,7 @@
     transition: .3s;
 }
 
-.items:not(.login):hover {
+.items:hover {
     
     color: rgb(128, 128, 128);
 }

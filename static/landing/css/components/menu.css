@@ -1,7 +1,7 @@
 /* General Menu Styling */
 .menu {
     background-color: #f5f5f5; /* Light gray background */
-    color: rgb(4, 0, 10);
+    color: rgb(4, 0, 10) !important;
     display: flex; /* Use flexbox for layout */
     justify-content: space-between; /* Space left and right sections */
     align-items: center; /* Vertically align items */
@@ -13,6 +13,8 @@
     right: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-decoration: none !important;
+
     
 }
 
@@ -85,6 +87,8 @@
     gap: 2rem; /* Space between navigation items */
 }
 
+
+
 .items {
     font-size: 1.2rem;
     font-weight: 500;
@@ -97,7 +101,7 @@
     transition: .3s;
 }
 
-.items:not(.login):hover {
+.items:hover {
     
     color: rgb(128, 128, 128);
 }
@@ -115,8 +119,8 @@
 }
 
 a {
-    text-decoration: none;
-    color: black;
+    text-decoration: none !important;
+    color: black !important;
 }
 
 /* Responsiveness */
