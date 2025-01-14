@@ -23,6 +23,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    thambnail = models.ImageField(upload_to='post_thumbnails', blank=True, null=True)
     content = RichTextField(blank=True, null=True)
     likes = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
