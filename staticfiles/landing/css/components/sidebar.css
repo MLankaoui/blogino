@@ -1,8 +1,16 @@
 .sidebar {
-    background-color: gray !important;
+    background-color: rgb(168, 140, 140) !important;
     color: white;
     float: right;
     margin-right: 20px;
     padding: 20px 100px 100px 100px;
     margin-top: 80px;
+
+    margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
 }

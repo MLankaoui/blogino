@@ -3,6 +3,10 @@
         <ul class="menu-list">
             <div class="left">
                 <li class="logo"><a href="{% url 'landing:index' %}">BLOGINO</a></li>
+                <div class="searching">
+                    <input type="text" class="search" placeholder="Search">
+                    <button class="search-button">Search</button>
+                </div>
             </div>
             <div class="right">
                 <li class="items"><a href="{% url 'landing:index' %}">Home</a> </li>
@@ -15,12 +19,9 @@
                     <li class="items"><a href="{% url 'account_logout' %}">Logout</a></li>
                 {% elif user.is_authenticated %}
                     <li class="items"><a href="{% url 'landing:dashboard' %}">Dashboard</a></li>
-                    <li class="items"><a href="{% url 'account_logout' %}">Logout</a></li>
+                    <li class="items login"><a href="{% url 'account_logout' %}">Logout</a></li>
                 {% endif %}
-                <div class="searching">
-                    <input type="text" class="search" placeholder="Search">
-                    <button class="search-button">Search</button>
-                </div>
+                
             </div>
         </ul>
     </div>
