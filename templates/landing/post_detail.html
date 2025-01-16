@@ -50,6 +50,11 @@
                     <p class="comment__content">{{ comment.user }} : {{ comment.content }} : {{ comment.created_at }}</p>
                 </div>
             {% endfor %}
+        </div>
+
+        {% block add_comment %}
+            {% include 'landing/components/add_comment.html' %}
+        {% endblock %}
     {% endblock %}
 </body>
 </html>

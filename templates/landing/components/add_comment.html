@@ -1,0 +1,7 @@
+{% block add_comment %}
+    <form action="{% url 'landing:post_detail' post.id %}" method="POST">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Comment"></textarea>
+        <button type="submit">Comment</button>
+    </form>
+{% endblock %}
