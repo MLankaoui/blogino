@@ -2,6 +2,8 @@
 
 Blogino is a Django-based blog application.
 
+![Blogino Screenshot](picture.jpg)
+
 ## Features
 
 - User authentication and authorization
