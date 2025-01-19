@@ -43,19 +43,29 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 3. Install the requirements
+### 3. Set up environment variables
+
+Create a `.env` file in the root directory of the project and add the necessary environment variables. For example:
+
+```plaintext
+DEBUG=True
+SECRET_KEY=your_secret_key
+DATABASE_URL=your_database_url
+```
+
+### 4. Install the requirements
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Apply migrations
+### 5. Apply migrations
 
 ```bash
 python manage.py migrate
 ```
 
-### 5. Run the development server
+### 6. Run the development server
 
 ```bash
 python manage.py runserver
@@ -81,6 +91,14 @@ To collect static files into the `STATIC_ROOT` directory, run:
 
 ```bash
 python manage.py collectstatic
+```
+
+### Running tests
+
+To run the tests, use the following command:
+
+```bash
+python manage.py test
 ```
 
 ## License

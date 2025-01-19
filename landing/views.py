@@ -20,6 +20,13 @@ def post_detail(request, post_id):
     categories = Category.objects.all()
     comments = Comment.objects.filter(post=post)
 
+    if request.method == 'POST':
+        user = request.user
+        content = request.POST['content']
+
+        comment = Comment(user=user, post=post, content=content)
+        comment.save()
+
     context = {
         'post': post,
         'categories': categories,

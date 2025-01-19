@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'landing/css/components/menu.css' %}">
     <link rel="stylesheet" href="{% static 'landing/css/components/sidebar.css' %}">
     <link rel="stylesheet" href="{% static 'landing/css/components/posts.css' %}">
@@ -27,68 +28,94 @@
     {% endblock %}
 
     {% block dashboard %}
-        <div class="dashboard">
+        <div class="container mt-5">
             <h1>Dashboard</h1>
             <div class="posts">
                 {% if user.is_superuser %}
-                    <h2>Welcome {{user}}, you re an admin right?</h2>
+                    <h2>Welcome {{user}}, you are an admin.</h2>
                 {% else %}
-                    <h2>Welcome {{user}}, you re a user right?</h2>
+                    <h2>Welcome {{user}}, you are a user.</h2>
                 {% endif %}
                 <h2>{{user}}'s posts</h2>
-                <ul>
-                    {% for post in posts %}
-                        <li>
-                            <a href="{% url 'landing:post_detail' post.id %}">{{ post.title }} </a>
-                            <button><a href="{% url 'landing:edit_post' post.id %}">Edit</a></button>
-                            <button><a href="{% url 'landing:delete_post' post.id %}">Delete</a></button>
-                        </li>
-                    {% endfor %}
-                </ul>
-
-                
-
-                <button><a href="{% url 'landing:create_post' %}">Create a new post</a></button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in posts %}
+                            <tr>
+                                <td><a href="{% url 'landing:post_detail' post.id %}" class="text-primary">{{ post.title }}</a></td>
+                                <td>
+                                    <a href="{% url 'landing:edit_post' post.id %}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{% url 'landing:delete_post' post.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{% url 'landing:create_post' %}" class="btn btn-success">Create a new post</a>
             </div>
 
             {% if user.is_superuser %}
-                <h2>all posts</h2>
-                <ul>
-                    {% for post in all_posts %}
-                        <li>
-                            <a href="{% url 'landing:post_detail' post.id %}">{{ post.title }} </a>
-                            <button><a href="{% url 'landing:edit_post' post.id %}">Edit</a></button>
-                            <button><a href="{% url 'landing:delete_post' post.id %}">Delete</a></button>
-                        </li>
-                    {% endfor %}
-                </ul>
+                <h2>All posts</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in all_posts %}
+                            <tr>
+                                <td><a href="{% url 'landing:post_detail' post.id %}" class="text-primary">{{ post.title }}</a></td>
+                                <td>
+                                    <a href="{% url 'landing:delete_post' post.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             {% endif %}
 
-
-            
-            <div class="categories">
+            <div class="categories mt-5">
                 <h2>Categories</h2>
-                <ul>
-                    {% for category in categories %}
-                        <li>
-                            <a href="{% url 'landing:category' category.id %}">{{ category.name }}</a>
-                            <button><a href="{% url 'landing:delete_category' category.id %}">Delete</a></button>
-                            <form action="{% url 'landing:edit_category' category.id %}" method="POST">
-                                {% csrf_token %}
-                                <input type="text" name="name" placeholder="Category name">
-                                <button type="submit">Edit category</button>
-                            </form>
-                        </li>
-                    {% endfor %}
-                </ul>
-
-                <form action="{% url 'landing:create_category' %}" method="POST">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in categories %}
+                            <tr>
+                                <td><a href="{% url 'landing:category' category.id %}" class="text-primary">{{ category.name }}</a></td>
+                                <td>
+                                    <a href="{% url 'landing:delete_category' category.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                    <form action="{% url 'landing:edit_category' category.id %}" method="POST" class="d-inline">
+                                        {% csrf_token %}
+                                        <input type="text" name="name" placeholder="Category name" class="form-control d-inline w-auto">
+                                        <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <form action="{% url 'landing:create_category' %}" method="POST" class="mt-3">
                     {% csrf_token %}
-                    <input type="text" name="name" placeholder="Category name">
-                    <button type="submit">Create category</button>
+                    <div class="input-group">
+                        <input type="text" name="name" placeholder="Category name" class="form-control">
+                        <button type="submit" class="btn btn-success">Create category</button>
+                    </div>
                 </form>
             </div>
         </div>
     {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
