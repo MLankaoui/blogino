@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from .models import Category, Post, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -91,6 +92,10 @@ def dashboard(request):
 def edit_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     categories = Category.objects.all()
+    
+    if post.user != request.user:
+    messages.error(request, "You cant edit this post")
+    return redirect('landing:dashboard')
 
     context = {
         'post': post,
@@ -114,6 +119,11 @@ def edit_post(request, post_id):
 @login_required
 def delete_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
+    
+     if post.user != request.user:
+        messages.error(request, "You cannot delete this post as it doesn't belog to you!")
+        return redirect('landing:dashboard')
+         
     post.delete()
 
     return redirect('landing:index')
