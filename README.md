@@ -2,7 +2,7 @@
 
 Blogino is a Django-based blog application.
 
-![Blogino Screenshot]('picture.jpg')
+![Blogino Screenshot](picture.jpg)
 
 ## Features
 
